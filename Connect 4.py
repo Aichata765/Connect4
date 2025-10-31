@@ -115,6 +115,7 @@ def drop(app, player):
     calcWinDiagonal(app)
     calcWinHorizontal(app)
     calcWinVertical(app)
+    calcWinDiagonal2(app)
     
 
 def move(app, direction, player):
@@ -160,6 +161,16 @@ def calcWinDiagonal(app):
                 app.win = "winA"
                 app.allowed = False
             elif app.board[r][c] == "yellow" and app.board[r+1][c+1] == "yellow" and app.board[r+2][c+2] == 'yellow' and app.board[r+3][c+3] == "yellow":
+                app.win = "winB"
+                app.allowed = False
+
+def calcWinDiagonal2(app):
+    for c in range(3, len(app.board[0])):
+        for r in range(len(app.board) - 3):
+            if app.board[r][c] == "purple" and app.board[r+1][c-1] == "purple" and app.board[r+2][c-2] == 'purple' and app.board[r+3][c-3] == "purple":
+                app.win = "winA"
+                app.allowed = False
+            elif app.board[r][c] == "yellow" and app.board[r+1][c-1] == "yellow" and app.board[r+2][c-2] == 'yellow' and app.board[r+3][c-3] == "yellow":
                 app.win = "winB"
                 app.allowed = False
 
